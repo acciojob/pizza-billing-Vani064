@@ -2,9 +2,9 @@ package com.driver;
 
 public class Pizza {
 
-    private int price =0;
+    private int price;
     private Boolean isVeg;
-    private String bill ="";
+    private String bill;
 
     private Boolean extraCheese = false;
     private Boolean extraToppings = false;
@@ -14,11 +14,9 @@ public class Pizza {
         this.isVeg = isVeg;
         // your code goes here
         if(isVeg)
-        {this.price = 300;
-            this.bill += "Base Price Of The Pizza: 300 \n";
+        {this.price += 300;
         }else{
-            this.price = 400;
-            this.bill += "Base Price Of The Pizza: 400 \n";
+            this.price += 400;
         }
     }
 
@@ -28,43 +26,63 @@ public class Pizza {
 
     public void addExtraCheese(){
         // your code goes here
-        if(this.extraCheese)
+        if(extraCheese)
             return;
 
-        this.price += 80;
-        this.extraCheese = true;
-        this.bill += "Extra Cheese Added: 80 \n";
+        price += 80;
+        extraCheese = true;
     }
 
     public void addExtraToppings(){
         // your code goes here
-        if(this.extraToppings)
+        if(extraToppings)
             return;
 
-        if(this.isVeg)
+        if(isVeg)
         {
-            this.price += 70;
-            this.bill += "Extra Toppings Added: 70 \n";
+            price += 70;
         }
         else {
-            this.price += 120;
-            this.bill += "Extra Toppings Added: 120 \n";
+            price += 120;
         }
-        this.extraToppings = true;
+        extraToppings = true;
     }
 
     public void addTakeaway(){
         // your code goes here
-        if(this.extraTakeway)
+        if(extraTakeway)
             return;
-        this.price += 20;
-        this.bill += "Paperbag Added: 20 \n";
-        this.extraTakeway = true;
+        price += 20;
+        extraTakeway = true;
     }
 
     public String getBill(){
         // your code goes here
-        this.bill += "Total Price: "+this.price;
+        if(isVeg){
+            bill = "Base Price Of The Pizza: 300\n";
+        }else{
+            bill = "Base Price Of The Pizza: 400\n";
+        }
+
+        if(extraCheese){
+            bill = bill + "Extra Cheese Added: 80\n";
+        }
+
+        if(extraToppings){
+            if(isVeg){
+                bill = bill + "Extra Toppings Added: 70\n";
+            }else{
+                bill = bill + "Extra Toppings Added: 120\n";
+            }
+        }
+
+        if(extraTakeway){
+            bill = bill + "Paperbag Added: 20\n";
+        }
+
+        String totalPrice = Integer.toString(price);
+
+        bill = bill + "Total Price: " + totalPrice + "\n";
         return this.bill;
     }
 }
